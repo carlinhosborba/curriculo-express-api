@@ -1,5 +1,3 @@
 // api/index.js
 const app = require('../src/app');
-
-// exporta uma função que delega para o Express
-module.exports = (req, res) => app(req, res);
+module.exports = (req, res) => app(req, res); // Vercel chama a função e passamos para o Express
