@@ -1,0 +1,128 @@
+{
+  "info": {
+    "name": "Curriculo API",
+    "_postman_id": "11111111-2222-3333-4444-555555555555",
+    "description": "Coleção para testar CRUD e relacionamentos do Curriculo API (Express + PostgreSQL)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://shiny-space-rotary-phone-x5r9rrj5g4rg3vgr-3000.app.github.dev"
+    },
+    {
+      "key": "personId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/"
+      }
+    },
+    {
+      "name": "People - List",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/people"
+      }
+    },
+    {
+      "name": "People - Get by ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/people/{{personId}}"
+      }
+    },
+    {
+      "name": "People - Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/people",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Joao Teste\",\n  \"title\": \"Dev\",\n  \"summary\": \"Resumo simples\",\n  \"email\": \"joao@teste.com\",\n  \"phone\": \"(81) 90000-0000\",\n  \"city\": \"Recife\",\n  \"state\": \"PE\",\n  \"website\": \"https://joao.dev\"\n}"
+        }
+      }
+    },
+    {
+      "name": "People - Update (title)",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/people/{{personId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Dev Front-End\"\n}"
+        }
+      }
+    },
+    {
+      "name": "People - Delete",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/people/{{personId}}"
+      }
+    },
+    {
+      "name": "Educations - List by person (query)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/educations?person_id={{personId}}"
+      }
+    },
+    {
+      "name": "Experiences - List by person (query)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/experiences?person_id={{personId}}"
+      }
+    },
+    {
+      "name": "Projects - List by person (query)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/projects?person_id={{personId}}"
+      }
+    },
+    {
+      "name": "Skills - List by person (query)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/skills?person_id={{personId}}"
+      }
+    },
+    {
+      "name": "People - Relations: Educations",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/people/{{personId}}/educations"
+      }
+    },
+    {
+      "name": "People - Relations: Experiences",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/people/{{personId}}/experiences"
+      }
+    },
+    {
+      "name": "People - Relations: Projects",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/people/{{personId}}/projects"
+      }
+    },
+    {
+      "name": "People - Relations: Skills",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/people/{{personId}}/skills"
+      }
+    }
+  ]
+}
