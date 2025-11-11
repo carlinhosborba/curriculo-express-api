@@ -2,16 +2,24 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+let pool; // cria só quando precisar
 
-pool.on('error', (err) => {
-  console.error('Erro no pool PG:', err);
-  process.exit(1);
-});
+function getPool() {
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      max: 1,
+      connectionTimeoutMillis: 5000
+      // (sslmode=require já vem na URL do Neon)
+    });
+    pool.on('error', (err) => {
+      console.error('Erro no pool PG:', err);
+    });
+  }
+  return pool;
+}
 
 module.exports = {
-  query: (text, params) => pool.query(text, params),
-  pool,
+  query: (text, params) => getPool().query(text, params),
+  pool: () => getPool(),
 };

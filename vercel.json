@@ -3,7 +3,6 @@
   "functions": { "api/*.js": { "runtime": "nodejs22.x" } },
   "builds": [
     { "src": "api/index.js", "use": "@vercel/node" },
-    { "src": "api/ping.js",  "use": "@vercel/node" },
-    { "src": "api/plain.js", "use": "@vercel/node" }
+    { "src": "api/ping.js",  "use": "@vercel/node" }
   ]
 }
